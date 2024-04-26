@@ -1,0 +1,129 @@
+circle.node, polygon.node {
+  stroke: #ccc;
+  @value nodeStrokeWidth: 0.8;
+  stroke-width: nodeStrokeWidth;
+  opacity: 1;
+  fill: white;
+}
+
+path.directionArrow {
+  fill: #777;
+  @value directionArrowSize: 6;
+  @value directionArrowWidth: 0.7;
+  stroke: none;
+  stroke-width: 0.8px;
+}
+
+g.plot {
+    /* outline: 1px solid red; */
+}
+
+circle.node[base_type="a"] {
+  fill: #dbdb8d;
+}
+
+circle.node[base_type="c"] {
+  fill: #98df8a;
+}
+
+circle.node[base_type="g"] {
+  fill: #ff9896;
+}
+
+circle.node[base_type="u"], circle.node[base_type="t"] {
+  fill: #aec7e8;
+}
+
+.node > text {
+     pointer-events: none;
+ }
+
+circle.node[node_type="label"] {
+    stroke: transparent;
+    stroke-width: 0;
+    fill: white;
+    display: inline;
+}
+
+circle.node[node_type="protein"] {
+    fill: gray;
+    fill-opacity: 0.5;
+    stroke-width: 4;
+}
+
+.selectedNode > circle.node {
+    stroke: red;
+}
+
+text.nodeLabel {
+    font-weight: bold;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 0.4em;
+    color: rgb(100,100,100);
+    text-anchor: middle;
+    alignment-baseline: middle;
+    dominant-baseline: central;
+    pointer-events: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+line.link {
+  stroke: #999;
+  stroke-opacity: 0.8;
+  stroke-width: 2;
+}
+
+line.link[link_type="pseudoknot"] {
+    stroke: red;
+}
+
+line.link[link_type="basepair"] {
+  stroke: red;
+}
+
+line.link[link_type="intermolecule"] {
+  stroke: blue;
+}
+
+line.link[link_type="chain_chain"] {
+  stroke-dasharray: 3,3;
+}
+
+line.link[link_type="fake"] {
+  stroke: green;
+}
+
+text.plotLabel {
+    font-family: Tahoma, Geneva, sans-serif;
+    font-weight: bolder;
+    font-size: 1.2em;
+    fill: rgba(200, 200, 200, 0.5);
+    text-anchor: middle;
+    alignment-baseline: central;
+}
+
+.transparent {
+    fill: transparent;
+    stroke-width: 0;
+    stroke-opacity: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.dragLine {
+  stroke: #999;
+  stroke-width: 2;
+  pointer-events: none;
+}
+
+.mouseEventHelper > :global(.extent) {
+  fill-opacity: .1;
+  stroke: #fff;
+  shape-rendering: crispEdges;
+}

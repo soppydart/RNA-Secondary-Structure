@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>RNA Secondary Structure</title>
+  <link rel="stylesheet" href="fornac.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #rna_ss {
+      margin: auto;
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      display: block;
+      margin-bottom: 20px;
+      margin-top: 15px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .input-container {
+      text-align: center;
+    }
+
+    .sequence-input {
+      padding: 8px;
+      margin-right: 10px;
+      width: 300px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .submit-btn {
+      padding: 8px 20px;
+      border-radius: 4px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>RNA Secondary Structure Visualization</h1>
+
+    <div id="rna_ss"></div>
+  </div>
+
+  <script src="https://unpkg.com/d3@3.5"></script>
+  <script src="fornac.js"></script>
+  <script>
+    "use strict";
+
+    // Function to compute dot structure
+    function solve(str, n) {
+      let mp = new Map();
+      let dp = Array.from({ length: n }, () => Array(n).fill(0));
+
+      for (let k = 5; k <= n - 1; k++) {
+        for (let i = 0, j = i + k; j < n; i++, j++) {
+          let val = dp[i][j - 1];
+          let finalval = -1;
+          for (let t = i; t < j - 4; t++) {
+            if (
+              (str[t] === "A" && str[j] === "U") ||
+              (str[t] === "U" && str[j] === "A") ||
+              (str[t] === "G" && str[j] === "C") ||
+              (str[t] === "C" && str[j] === "G")
+            ) {
+              if (
+                (t - 1 < 0 ? 0 : dp[i][t - 1]) + dp[t + 1][j - 1] + 1 >
+                val
+              ) {
+                val = (t - 1 < 0 ? 0 : dp[i][t - 1]) + dp[t + 1][j - 1] + 1;
+                finalval = t;
+              }
+            }
+          }
+          mp.set(`${i},${j}`, finalval);
+          dp[i][j] = val;
+        }
+      }
+
+      return mp;
+    }
+
+    // Function to make pairs
+    function makePairs(mp, i, j, dotStructure) {
+      if (i >= j - 4) {
+        return;
+      }
+      let t = mp.get(`${i},${j}`);
+      if (t !== -1) {
+        dotStructure[i] = "(";
+        dotStructure[j] = ")";
+        makePairs(mp, i, t - 1, dotStructure);
+        makePairs(mp, t + 1, j - 1, dotStructure);
+      } else {
+        dotStructure[j] = ".";
+        makePairs(mp, i, j - 1, dotStructure);
+      }
+    }
+
+    // Function to generate dot structure
+    function generateDotStructure(str) {
+      let n = str.length;
+      let mp = solve(str, n);
+      let dotStructure = Array(n).fill(".");
+      makePairs(mp, 0, n - 1, dotStructure);
+      return dotStructure.join("");
+    }
+
+    // Function to update RNA structure based on user input
+    function updateStructure() {
+      var url = new URL(window.location.href);
+      var sequence = url.searchParams.get("sequence").toUpperCase();
+      var dotBracket = url.searchParams.get("dot_structure");
+
+      // Remove existing RNA structure
+      var svg = document.getElementById("rna_ss");
+      while (svg.firstChild) {
+        svg.removeChild(svg.firstChild);
+      }
+
+      // Add new RNA structure to the container
+      var options = {
+        structure: dotBracket,
+        sequence: sequence,
+      };
+      if (options.structure && options.sequence) {
+        var container = new fornac.FornaContainer("#rna_ss", {
+          animation: true,
+          zoomable: true,
+        });
+        container.addRNA(options.structure, options);
+        container.setSize(200, 200);
+      } else {
+        console.error("Error: Structure and sequence are not defined.");
+      }
+    }
+
+    // Trigger updateStructure on page load
+    window.addEventListener("load", updateStructure);
+  </script>
+</body>
+
+</html>
