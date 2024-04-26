@@ -76,7 +76,6 @@
   <script>
     "use strict";
 
-    // Function to compute dot structure
     function solve(str, n) {
       let mp = new Map();
       let dp = Array.from({ length: n }, () => Array(n).fill(0));
@@ -109,7 +108,6 @@
       return mp;
     }
 
-    // Function to make pairs
     function makePairs(mp, i, j, dotStructure) {
       if (i >= j - 4) {
         return;
@@ -126,7 +124,6 @@
       }
     }
 
-    // Function to generate dot structure
     function generateDotStructure(str) {
       let n = str.length;
       let mp = solve(str, n);
@@ -135,37 +132,45 @@
       return dotStructure.join("");
     }
 
-    // Function to update RNA structure based on user input
-    function updateStructure() {
-      var url = new URL(window.location.href);
-      var sequence = url.searchParams.get("sequence").toUpperCase();
-      var dotBracket = url.searchParams.get("dot_structure");
+    function parseDotStructureFromURL(dotBracketEncoded) {
+        const dotStructureParam = decodeURIComponent(dotBracketEncoded);
 
-      // Remove existing RNA structure
-      var svg = document.getElementById("rna_ss");
-      while (svg.firstChild) {
-        svg.removeChild(svg.firstChild);
+        const dotBracket = dotStructureParam.replace(/D/g, '.');
+
+        return dotBracket;
       }
 
-      // Add new RNA structure to the container
-      var options = {
-        structure: dotBracket,
-        sequence: sequence,
-      };
-      if (options.structure && options.sequence) {
-        var container = new fornac.FornaContainer("#rna_ss", {
-          animation: true,
-          zoomable: true,
-        });
-        container.addRNA(options.structure, options);
-        container.setSize(200, 200);
-      } else {
-        console.error("Error: Structure and sequence are not defined.");
-      }
-    }
+      function updateStructure() {
+        var url = new URL(window.location.href);
+        var sequence = url.searchParams.get("sequence").toUpperCase();
+        var dotBracketEncoded = url.searchParams.get("dot_structure");
+        // var dotBracket = dot;
+        // console.log(dotBracket);
+        const dotBracket = parseDotStructureFromURL(dotBracketEncoded);
+        // var dotBracket = "(((((((((...((((((.........))))))........((((((.......))))))..)))))))))";
 
-    // Trigger updateStructure on page load
-    window.addEventListener("load", updateStructure);
+        var svg = document.getElementById("rna_ss");
+        while (svg.firstChild) {
+          svg.removeChild(svg.firstChild);
+        }
+
+        var options = {
+          structure: dotBracket,
+          sequence: sequence,
+        };
+        if (options.structure && options.sequence) {
+          var container = new fornac.FornaContainer("#rna_ss", {
+            animation: true,
+            zoomable: true,
+          });
+          container.addRNA(options.structure, options);
+          container.setSize(200, 200);
+        } else {
+          console.error("Error: Structure and sequence are not defined.");
+        }
+      }
+
+      window.addEventListener("load", updateStructure);
   </script>
 </body>
 
