@@ -8,6 +8,19 @@ If you want to build the package from source, you will find detailed instruction
 
 ### Installation and Usage
 
+Clone this repository:
+
+#### HTTPS
+```bash
+git clone https://github.com/soppydart/RNA-Secondary-Structure.git
+```
+
+#### SSH
+```bash
+git clone git@github.com:soppydart/RNA-Secondary-Structure.git
+```
+
+Install the dependencies for fornac:
 ```bash
 cd fornac/
 npm install
