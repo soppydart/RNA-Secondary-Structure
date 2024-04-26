@@ -2,13 +2,18 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <cstdio>
 using namespace std;
 
 int main() {
-    string command = "RNAfold input-sequences/input2.seq";
+    string fileName;
+    cout << "Enter the file name: ";
+    getline(cin, fileName);
+
+    string command = "RNAfold input-sequences/" + fileName;
     FILE* pipe = popen(command.c_str(), "r");
     if (!pipe) {
-        cout << "Error" << command << endl;
+        cout << "Did you enter the filename correctly?" << command << endl;
         return -1;
     }
 
@@ -42,9 +47,9 @@ int main() {
     string baseURL = "Visualization link: http://localhost:9000/";
     string finalURL = baseURL + "?sequence=" + RNAsequence + "&dot_structure=" + RNAdotStructure;
 
-    cout<<endl;
+    cout << endl;
 
-    cout<<finalURL<<endl;
+    cout << finalURL << endl;
 
     return 0;
 }
