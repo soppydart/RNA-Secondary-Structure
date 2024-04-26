@@ -5,6 +5,17 @@
 #include <cstdio>
 using namespace std;
 
+string urlEncode(const string &value) {
+    string encoded;
+    for (char c : value) {
+        if (c == '.') 
+            encoded += 'D';
+         else 
+            encoded += c;
+    }
+    return encoded;
+}
+
 int main() {
     string fileName;
     cout << "Enter the file name: ";
@@ -45,7 +56,9 @@ int main() {
     pclose(pipe);
 
     string baseURL = "Visualization link: http://localhost:9000/";
-    string finalURL = baseURL + "?sequence=" + RNAsequence + "&dot_structure=" + RNAdotStructure;
+    string encodedDotStructure = urlEncode(RNAdotStructure);
+
+    string finalURL = baseURL + "?sequence=" + RNAsequence + "&dot_structure=" + encodedDotStructure;
 
     cout << endl;
 
