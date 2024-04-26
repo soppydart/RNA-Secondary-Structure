@@ -20,7 +20,7 @@ git clone https://github.com/soppydart/RNA-Secondary-Structure.git
 git clone git@github.com:soppydart/RNA-Secondary-Structure.git
 ```
 
-Install the dependencies for fornac:
+Install the dependencies for fornac and run the dev server:
 ```bash
 cd fornac/
 npm install
