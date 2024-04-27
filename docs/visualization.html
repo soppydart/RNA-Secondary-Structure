@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Visualization</title>
+    <link rel="stylesheet" href="css/fornac.css" />
+    <link rel="stylesheet" href="css/visualization.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+  </head>
+  <body>
+    <nav id="navbar">
+      <div class="containerNav">
+        <a href="#" class="logoNav">Home</a>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Visualization</a></li>
+          <li><a href="#">Docs</a></li>
+          <li><a href="#">Analysis</a></li>
+        </ul>
+      </div>
+    </nav>
+    <h1 class="heading">Visualization</h1>
+    <div class="container2">
+      <h1>Maximizing number of pairs</h1>
+      <div id="canvas1"></div>
+    </div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="js/maxPairs.js"></script>
+    <div class="container2">
+      <h1>RNA Secondary Structure Visualization</h1>
+      <div id="rna_ss"></div>
+    </div>
+    <script src="https://unpkg.com/d3@3.5"></script>
+    <script src="js/fornac.js"></script>
+    <script src="js/secondaryStructure.js"></script>
+  </body>
+</html>
