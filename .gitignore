@@ -33,3 +33,9 @@
 
 # PostScript
 *.ps
+
+# bin directory
+/bin/
+
+# build directory
+/build/
