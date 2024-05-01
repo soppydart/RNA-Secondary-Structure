@@ -5,7 +5,7 @@
 #include <sstream>
 #include <string>
 
-#include "../utils/data.h"
+#include "../lib/data.h"
 
 FILE* getRnaFoldOutput();
 struct Sequence getSequenceAndDotStructure(FILE* pipe);

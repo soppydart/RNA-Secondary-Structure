@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "../utils/data.h"
+#include "../lib/data.h"
 
 void solve(const std::string& str);
 void makePairs(int i, int j);
