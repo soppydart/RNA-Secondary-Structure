@@ -1,16 +1,25 @@
 #include "../include/rnaFold.h"
 
+#include <fstream>
+
 // run RNAfold on the sequence file and return the output
 FILE* getRnaFoldOutput() {
   std::string fileName;
   std::cout << "\nEnter the file name: ";
   std::getline(std::cin, fileName);
 
-  std::string command = "RNAfold rna-sequences/" + fileName;
+  std::string filePath = "rna-sequences/" + fileName;
+  std::ifstream file(filePath);
+  if (!file.is_open()) {
+    std::cerr << "Error: File '" << filePath << "' not found." << std::endl;
+    exit(-1);
+  }
+  file.close();
+
+  std::string command = "RNAfold " + filePath;
   FILE* pipe = popen(command.c_str(), "r");
   if (!pipe) {
-    std::cout << "Did you enter the filename correctly?" << command
-              << std::endl;
+    std::cerr << "Error: Unable to execute command." << std::endl;
     exit(-1);
   }
   return pipe;
