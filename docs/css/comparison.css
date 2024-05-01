@@ -1,0 +1,50 @@
+body {
+  font-family: Arial, sans-serif;
+  margin-top: 100px;
+  background-color: #a8e898;
+  padding: 0;
+  font-size: large;
+}
+.container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+.molecule {
+  margin-bottom: 40px;
+  word-wrap: break-word;
+}
+.molecule h2 {
+  margin-top: 0;
+}
+.molecule img {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+.molecule figure {
+  text-align: center;
+}
+.molecule figcaption {
+  font-style: italic;
+  margin-top: 5px;
+}
+.molecule p {
+  margin-top: 10px;
+}
+h1 {
+  text-align: center;
+}
+
+@media screen and (min-width: 600px) {
+  .molecule img {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 768px) {
+  body {
+    margin-top: 50px;
+  }
+}

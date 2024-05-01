@@ -1,7 +1,8 @@
 body {
   background-color: #a8e898;
   font-family: Arial, sans-serif;
-  margin: 0;
+  margin-top: 100px;
+  /* margin: auto; */
   padding: 0;
 }
 
@@ -9,7 +10,17 @@ header {
   background-color: #a8e898;
   /* padding: 10px; */
   text-align: center;
-  margin-top: 20px;
+  margin-top: 25px;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0px auto;
+  margin-top: 10px;
+  padding: 5px;
+  /* background-color: #88f1c5;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 }
 
 h1,
@@ -18,15 +29,6 @@ h3,
 h4 {
   margin: 0;
   color: #333;
-}
-
-main {
-  max-width: 800px;
-  margin: 0px auto;
-  padding: 5px;
-  /* background-color: #88f1c5;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 }
 
 section {
@@ -40,4 +42,10 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    margin-top: 50px;
+  }
 }
