@@ -1,38 +1,81 @@
 # RNA-Secondary-Structure
 
-## How to run locally:
+ An implementation of the dynamic programming algorithm to predict the secondary structure of an RNA molecule and visualize it.
 
-### Pre-requisites:
-Make sure you have ViennaRna installed on your system. You can download a pre-compiled binary or the source code from [here](https://www.tbi.univie.ac.at/RNA/index.html).
-If you want to build the package from source, you will find detailed instructions [here](https://github.com/soppydart/RNA-Secondary-Structure/files/15134737/RNA-tutorial-2.6.4.pdf).
+## Table of Contents
 
-### Installation and Usage
+- [RNA-Secondary-Structure](#rna-secondary-structure)
+  - [Table of Contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Setting Up](#setting-up)
+        - [HTTPS](#https)
+        - [SSH](#ssh)
+  - [Usage](#usage)
+    - [Screenshots](#screenshots)
+  - [Directory Structure](#directory-structure)
+  - [License](#license)
 
-Clone this repository:
+## Getting Started
 
-#### HTTPS
+### Prerequisites
+
+- [The ViennaRNA Package]([https://unity.com/download](https://www.tbi.univie.ac.at/RNA/index.html))
+- [GNU Make](https://www.gnu.org/software/make/) 
+- [GCC](https://gcc.gnu.org/)
+
+### Setting Up
+
+1. Clone this repository:
+
+##### HTTPS
 ```bash
 git clone https://github.com/soppydart/RNA-Secondary-Structure.git
 ```
 
-#### SSH
+##### SSH
 ```bash
 git clone git@github.com:soppydart/RNA-Secondary-Structure.git
 ```
 
-Install the dependencies for fornac and run the dev server:
+2. Navigate to the project directory.
 ```bash
-cd fornac/
-npm install
-npm run dev
+cd RNA-Secondary-Structure/
 ```
 
-In another terminal instance, at the root of the project, run:
+3. Execute the following command. This will both compile the program if necessary and execute it. For further details, check [Usage](#usage).
+
 ```bash
-g++ main.cpp && ./a.out
+make run-program
 ```
 
-When prompted, input the name of the file (present in 'input-sequences/') that contains the RNA sequence, for example:</br>
+4. To clean up the generated files and directories, use the following command:
+   
+```bash
+make clean
+```
+
+## Usage
+
+When prompted, input the name of the file (present in `rna-sequences/`) that contains the RNA sequence, for example:
 ```input1.seq```
 
-To view the visualization of the secondary structure, click on the link displayed in the console.
+To view the visualization of the secondary structure, navigate to the link displayed in the console.
+
+### Screenshots
+
+![terminal output](/docs/assets/Screenshots/image-3.png)
+![maximizing pairs](/docs/assets/Screenshots/image-1.png)
+![secondary structure](/docs/assets/Screenshots/image-2.png)
+
+## Directory Structure
+
+- `src/`: Contains the source code files (.cpp).
+- `include/`: Contains the header files (.h).
+- `lib/`: Contains a reusable header file defining a struct.
+- `build/`: Directory where object files (.o) are stored after compilation.
+- `bin/`: Directory where executable files are stored after compilation.
+
+## License
+
+This project is licensed under the Apache License Version 2.0. You can find the full text of the license in the [LICENSE](LICENSE) file.
