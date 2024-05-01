@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comparison</title>
+    <link rel="stylesheet" href="css/comparison.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+  </head>
+  <body>
+    <nav id="navbar">
+      <div class="containerNav">
+        <a href="#">
+          <img src="assets/logo.png" class="nav-img" height="50px" width="50x"></img>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="visualization.html">Visualization</a></li>
+          <li><a href="documentation.html">Docs</a></li>
+          <li><a href="analysis.html">Analysis</a></li>
+          <li><a href="comparison.html">Comparison</a></li>
+          <li><a href="extras.html">Extras</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <h1>Comparison</h1>
+      <ol>
+        <li class="molecule">
+          <h2>Mus musculus (house mouse) mmu-miR-3074-5p</h2>
+          <h3>GUUCCUGCUGAACUGAGCCAGU</h3>
+          <figure>
+            <img src="assets/Comparison/1_algo.png" alt="Our Output" />
+            <figcaption>Our Output</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/Comparison/1_true.png" alt="Actual Structure" />
+            <figcaption>Actual Structure</figcaption>
+          </figure>
+          <p>
+            <strong>Analysis</strong>: On comparing the original structure with the observed one, we note a disparity in their configurations. The original model features four bond pairs, comprising two A-U bonds and two G-C bonds. However, in the observed structure, there are five bond pairs, including an additional G-C bond. Notably, while bonding initiates at the outset of the original structure, in the observed structure, bonding occurs towards the middle. The presence of an extra G-C bond suggests increased structural integrity in the observed form, owing to the greater number of bonds. However, it's important to recognize that this enhanced strength may not necessarily translate to practical feasibility in real-world scenarios.
+          </p>
+        </li>
+        <li class="molecule">
+          <h2>HIV-1 DIS(MAL) GENOMIC RNA from None (PDB 1O3Z, chain B)</h2>
+          <h3>CUUGCUGAGGUGCACACAGCAAG</h3>
+          <figure>
+            <img src="assets/Comparison/2_algo.png" alt="Our Output" />
+            <figcaption>Our Output</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/Comparison/2_true.png" alt="Actual Structure" />
+            <figcaption>Actual Structure</figcaption>
+          </figure>
+          <p>
+            <strong>Analysis</strong>: On comparing the observed structure with the original, a notable difference emerges. The original configuration boasts three A-U bonds and four G-C bonds, while the observed structure introduces an additional G-C bond. Furthermore, the original structure forms a ring of 11 edges, a cohesive unit. However, the observed structure disrupts this unity, dividing the polygon into two rings—one with six edges and the other with seven.
+          </p>
+        </li>
+        <li class="molecule">
+          <h2>Cyanothece sp. PCC 7424 CRISPR RNA direct repeat element</h2>
+          <h3>AGGAAAGCCCGCCUGCGCGGGCUA</h3>
+          <figure>
+            <img src="assets/Comparison/3_algo.png" alt="Our Output" />
+            <figcaption>Our Output</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/Comparison/3_true.png" alt="Actual Structure" />
+            <figcaption>Actual Structure</figcaption>
+          </figure>
+          <p>
+            <strong>Analysis</strong>: The original structure, being identical to the observed one, suggests it already maximizes the number of bonds feasible within its parameters.This implies a state of structural optimization where additional bonds would disrupt stability.
+          </p>
+        </li>
+        <li class="molecule">
+          <h2>
+            Homo sapiens (human) RNA, 5S ribosomal 1 (RNA5S1-8, RNA5S10-17)
+          </h2>
+          <h3>
+            GUCUACGGCCAUACCACCCUGAACGCGCCCGAUCUCGUCUGAUCUCGGAAGCUAAGCAGGGUCGGGCCUGGUUAGUACUUGGAUGGGAGACCGCCUGGGAAUACCGGGUGCUGUAGGCUUU
+          </h3>
+          <figure>
+            <img src="assets/Comparison/4_algo.png" alt="Our Output" />
+            <figcaption>Our Output</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/Comparison/4_true.png" alt="Actual Structure" />
+            <figcaption>Actual Structure</figcaption>
+          </figure>
+          <p>
+            <strong>Analysis</strong>: On comparing the observed image with the actual one, it's evident that there are more loops present in the observed structure. However, while the original configuration features rings with a greater number of sides, the observed structure includes loops of size 4 as well. Despite this discrepancy, the number of bonds in both structures remains almost identical, although the original structure contains slightly fewer bonds.
+          </p>
+        </li>
+        <li class="molecule">
+          <h2>Pyrobaculum arsenaticum DSM 13514 CRISPR RNA direct repeat element</h2>
+          <h3>CUUUCAAUCCUCUUUUUGAGAUUU</h3>
+          <figure>
+            <img src="assets/Comparison/5_algo.png" alt="Our Output" />
+            <figcaption>Our Output</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/Comparison/5_true.png" alt="Actual Structure" />
+            <figcaption>Actual Structure</figcaption>
+          </figure>
+          <p>
+            <strong>Analysis</strong>: On comparing the two images, we can observe that both have same number of nucleotide pairs that is 6 each. Both the expected structure and actual structure are coicidentally the same.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </body>
+</html>

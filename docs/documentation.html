@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentation</title>
+    <link rel="stylesheet" href="css/documentation.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="icon" type="image/x-icon" href="assets/logo.png" />
+  </head>
+
+  <body>
+    <nav id="navbar">
+      <div class="containerNav">
+        <a href="#">
+          <img src="assets/logo.png" class="nav-img" height="50px" width="50x"></img>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="visualization.html">Visualization</a></li>
+          <li><a href="documentation.html">Docs</a></li>
+          <li><a href="analysis.html">Analysis</a></li>
+          <li><a href="comparison.html">Comparison</a></li>
+          <li><a href="extras.html">Extras</a></li>
+        </ul>
+      </div>
+    </nav>
+    <h1>Documentation</h1>
+
+    <h2>utils/data.h</h2>
+    <p>
+      Stores information about an RNA molecule: the sequence string containing
+      bases in a sequence, and the dot bracket structure, which contains
+      information about how the bases pair up.
+    </p>
+    <h3>struct Sequence</h3>
+    <ul>
+      <li>
+        <strong>std::string rnaSequence:</strong> String containing the RNA
+        sequence.
+      </li>
+      <li>
+        <strong>std::string rnaDotBracket:</strong> String containing the dot
+        bracket structure.
+      </li>
+    </ul>
+
+    <h2>include/rnaFold.h</h2>
+    <p>
+      Reads the input sequence file and uses the ViennaRNA package to compute
+      the dot bracket structure for the RNA sequence.
+    </p>
+    <h3>FILE* getRnaFoldOutput()</h3>
+    <p>
+      Reads the input file containing the RNA sequence. Runs the RNAfold command.
+    </p>
+    <strong>Parameters</strong>: (none)</br>
+    <strong>Return</strong>: FILE* - the file stream variable.
+    <h3>struct Sequence getSequenceAndDotStructure(FILE* pipe)</h3>
+    <p>
+      Extracts the RNA sequence and the dot bracket structure from the output of
+      the getRnaFoldOutput() function and creates a struct instance to store
+      that information.
+    </p>
+    <h4>Parameters</h4>
+    <ul>
+      <li>
+        <strong>FILE* pipe</strong>: a file stream opened by popen to execute a
+        command (RNAfold) with the specified input file.
+      </li>
+    </ul>
+    <strong>Return</strong>: struct Sequence - the instance of the Sequence
+    struct conataining the sequence string and the dot bracket structure.
+    <h3>struct Sequence getSequenceDetails()</h3>
+    <p>
+      Calls getSequenceAndDotStructure(FILE*) and returns the struct instance.
+    </p>
+    <strong>Parameters</strong>: (none)</br>
+    <strong>Return</strong>: struct Sequence : the instance of the Sequence
+    struct conataining the sequence string and the dot bracket structure.
+
+    <h2>include/predictStructure.h</h2>
+    <p>
+      Takes an RNA sequence as input and calculates the maximum number of pairs
+      that are possible such that there are no sharp turns or knots.
+    </p>
+    <h3>void solve(const std::string& str)</h3>
+    <p>
+      Computes the maximum number of matching base pairs in an RNA sequence
+      using dynamic programming. The function updates a DP table based on valid
+      RNA base pair matches (A-U, U-A, G-C, C-G).
+    </p>
+    <h4>Parameters</h4>
+    <ul>
+      <li>
+        <strong>std::string</strong> str: RNA sequence string to be processed.
+      </li>
+    </ul>
+    <strong>Return</strong>: (none)
+    <h3>void makePairs(int i, int j)</h3>
+    <p>
+      Recursively reconstructs the matching base pairs from the DP table and
+      stores them in a list of pairs.
+    </p>
+    <h4>Parameters</h4>
+    <ul>
+      <li><strong>int</strong> i: Starting index of the subsequence.</li>
+      <li><strong>int</strong> j: Ending index of the subsequence.</li>
+    </ul>
+    <strong>Return</strong>: (none)
+
+    <h3>void predict(struct Sequence seq)</h3>
+    <p>
+      Calls solve to fill the table, and makePairs to reconstruct the pairings,
+      and finally outputs the results.
+    </p>
+    <h4>Parameters</h4>
+    <ul>
+      <li>
+        <strong>struct Sequence seq</strong>: RNA sequence read from the input
+        sequence file.
+      </li>
+    </ul>
+    <strong>Return</strong>: (none)
+
+    <h2>include/visualization.h</h2>
+    <p>
+      Produces a URL as an output to which the user can navigate to for
+      visualizing the secondary structure of the RNA sequence.
+    </p>
+    <h3>std::string dotEncode(const std::string& value)</h3>
+    <p>
+      Converts the dot bracket structure into an encoded form that can be passed
+      over a URL.
+    </p>
+    <h4>Parameters</h4>
+    <ul>
+      <li>
+        <strong>std::string value</strong>: a dot bracket structure containing
+        the characters '.', '(', and ')'.
+      </li>
+    </ul>
+    <strong>Return</strong>: std::string - the encoded dot bracket string.
+
+    <h3>std::string getURL(std::string sequence, std::string dotStructure)</h3>
+    <p>Generates the URL for visualizing the secondary structure of the RNA.</p>
+    <h4>Parameters</h4>
+    <ul>
+      <li>
+        <strong>std::string sequence</strong>: the RNA sequence string
+        conatining the bases 'A', 'U', 'G', 'C'.
+      </li>
+      <li>
+        <strong>std::string dotStructure</strong>: the dot bracket structure
+        which is used to construct the secondary structure of the RNA
+        molecule.
+      </li>
+    </ul>
+    <strong>Return</strong>: std::string - the visualization URL.
+
+    <h3>void visualize(struct Sequence seq)</h3>
+    <p>
+      calls the getURL(std::string, std:string) function that generates the URL.
+    </p>
+    <h4>Parameters</h4>
+    <ul>
+      <li>
+        <strong>struct Sequence seq</strong>: an instance of the struct
+        Sequence.
+      </li>
+    </ul>
+    <strong>Return</strong>: (none)
+  </body>
+</html>

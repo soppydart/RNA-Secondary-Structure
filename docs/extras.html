@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extras</title>
+    <link rel="stylesheet" href="css/extras.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="icon" type="image/x-icon" href="assets/logo.png" />
+  </head>
+  <body>
+    <nav id="navbar">
+      <div class="containerNav">
+        <a href="#">
+          <img src="assets/logo.png" class="nav-img" height="50px" width="50x"></img>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="visualization.html">Visualization</a></li>
+          <li><a href="documentation.html">Docs</a></li>
+          <li><a href="analysis.html">Analysis</a></li>
+          <li><a href="comparison.html">Comparison</a></li>
+          <li><a href="extras.html">Extras</a></li>
+        </ul>
+      </div>
+    </nav>
+    <h1>Limitations</h1>
+    <ul>
+      <li>
+        The structure predicted by our algorithm is not very accurate, as in
+        reality there are many more factors that determine the formation of
+        secondary structure of RNA. The actual structure may not have the
+        maximum number of pairs, which made it difficult for us to verify the
+        correctness of our code.
+      </li>
+      <li>
+        Some RNA sequences we found on RNA Central do not fold at all, despite
+        the dynamic programming function providing a valid set of pairs of
+        bases. We suspect that we will not be able to find simple minimum free
+        energy secondary structures for these sequences because they may
+        contain, knots, pseudo-knots, dimerization, hybridization, etc.
+      </li>
+    </ul>
+    <h1>Future Work</h1>
+    <ul>
+      <li>
+        Extend our current visualization system for RNA molecules with knots.
+      </li>
+      <li>
+        Enable the user to add multiple RNA molecules in one single canvas
+        during visualization.
+      </li>
+      <li>
+        Add step-by-step animation to elaborate in detail how the sequence of
+        bases folds to form the RNA secondary structure.
+      </li>
+    </ul>
+  </body>
+</html>

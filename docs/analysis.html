@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analysis</title>
+    <link rel="stylesheet" href="css/analysis.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+  </head>
+  <body>
+    <nav id="navbar">
+      <div class="containerNav">
+        <a href="#">
+          <img src="assets/logo.png" class="nav-img" height="50px" width="50x"></img>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="visualization.html">Visualization</a></li>
+          <li><a href="documentation.html">Docs</a></li>
+          <li><a href="analysis.html">Analysis</a></li>
+          <li><a href="comparison.html">Comparison</a></li>
+          <li><a href="extras.html">Extras</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <h1>Analysis</h1>
+
+        <p>
+      <strong>Initialization:</strong>
+    </p>
+    <ol>
+      <li>A table dp (2D vector) is created to store the maximum number of pairs that can be formed within a substring of the RNA sequence.</li>
+      <li>A map mp is used to remember the decision points, i.e., which indices in the substring form a bond that leads to the optimal solution.</li>
+    </ol>
+    <p>
+      <strong>Dynamic Programming (DP) Table Calculation (solve function):</strong>
+    </p>
+    <ol>
+      <li>The algorithm fills the dp table iteratively. It starts by considering all possible substrings of the RNA sequence that are at least 5 characters long (since a pair must be separated by at least one character to prevent overlapping).</li>
+      <li>For each substring, it calculates the maximum number of pairs by trying all possible splits where the ends of the substring can form a pair, updating the dp value for that substring if a better solution (more pairs) is found.</li>
+      <li>The decision (which index is paired with the last character of the substring to form the optimal solution) is stored in the mp map.</li>
+    </ol>
+    <p>
+      <strong>Base Pair Identification (makePairs function):</strong>
+    </p>
+    <ol>
+      <li>Once the dp table is fully computed, the makePairs function uses the decisions stored in the mp map to reconstruct the actual pairs by backtracking from the full sequence down to the smallest substrings.</li>
+      <li>The resulting pairs are stored in the vector bond_index, which can then be used to determine which bases are paired in the optimal solution.</li>
+    </ol>
+    <p>
+      <strong>Result Output:</strong>
+    </p>
+    <ol>
+      <li>After executing makePairs, the program prints the number of base pairs and the indices of the paired bases in the RNA sequence.</li>
+    </ol>
+
+      <p>
+        <strong>Time Complexity:</strong> O(n³)<br />
+        <strong>Space Complexity:</strong> O(n²)
+      </p>
+      <ol>
+        <li>
+          From the table we can observe that The time taken for the computations
+          increases non-linearly with respect to the input length. This is
+          expected given the time complexity of O(n³), which was previously
+          discussed.
+        </li>
+        <li>
+          The increase in time becomes significantly more pronounced as the
+          input length grows. For instance, the time jumps from 1184ms for a
+          length of 50 to 10233ms for a length of 100, almost a tenfold increase
+          for a twofold increase in length.
+        </li>
+        <li>
+          The algorithm becomes impractical for very large inputs, as seen with
+          the length of 3000 taking over 15 million milliseconds (more than 4
+          hours).
+        </li>
+        <li>
+          The graph shows a curve that suggests a polynomial trend, consistent
+          with the cubic time complexity of the algorithm. The steepness of the
+          curve at larger values of 'n' (input size) indicates a growth pattern
+          that surpasses quadratic growth, which aligns with the O(n³) expected
+          behavior.
+        </li>
+      </ol>
+      <p>
+        Also, we observed that the algorithm doesn’t execute on an 8GB RAM
+        machine for input sizes greater than 3500. This is most likely due to
+        the O(n²) space complexity resulting from the dp and map data structures
+        used by the algorithm. This suggests that the practicality of using this
+        algorithm for very large inputs is questionable. If processing times are
+        too long or if the program terminates due to resource constraints, it
+        would not be suitable for practical use without optimization.
+      </p>
+
+      <h2>Comparative Analysis:</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Length</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>5</td>
+            <td>12 ms</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>34 ms</td>
+          </tr>
+          <tr>
+            <td>50</td>
+            <td>1184 ms</td>
+          </tr>
+          <tr>
+            <td>100</td>
+            <td>10233 ms</td>
+          </tr>
+          <tr>
+            <td>500</td>
+            <td>72859 ms</td>
+          </tr>
+          <tr>
+            <td>1000</td>
+            <td>3946351 ms</td>
+          </tr>
+          <tr>
+            <td>2000</td>
+            <td>9342486 ms</td>
+          </tr>
+          <tr>
+            <td>3000</td>
+            <td>1522486 ms</td>
+          </tr>
+        </tbody>
+      </table>
+      <img src="assets/Graph.png" height="450px" class="graph" />
+    </div>
+  </body>
+</html>
