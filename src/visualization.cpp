@@ -17,7 +17,7 @@ std::string dotEncode(const std::string& value) {
 // construct the URL string
 std::string getURL(std::string sequence, std::string dotStructure) {
   std::string baseURL =
-      "https://rna-secondary-structure-docs.surge.sh/visualization.html";
+      "https://rna-secondary-structure-docs.netlify.app/visualization";
   std::string encodedDotStructure = dotEncode(dotStructure);
 
   std::string finalURL = baseURL + "?sequence=" + sequence +
