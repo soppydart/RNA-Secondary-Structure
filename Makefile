@@ -3,7 +3,7 @@ CFLAGS = -std=c++20 -I$(INCDIR)
 
 SRCDIR = src
 INCDIR = include
-UTILSDIR = utils
+LIBDIR = lib
 BUILDDIR = build
 BINDIR = bin
 TARGET = $(BINDIR)/program
@@ -23,3 +23,6 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.cpp
 
 run-program: $(TARGET)
 	$(TARGET)
+
+clean:
+	rm -rf $(BINDIR) $(BUILDDIR) rna.ps
