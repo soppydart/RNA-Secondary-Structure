@@ -1,58 +1,5 @@
 "use strict";
 
-function solve(str, n) {
-  let mp = new Map();
-  let dp = Array.from({ length: n }, () => Array(n).fill(0));
-
-  for (let k = 5; k <= n - 1; k++) {
-    for (let i = 0, j = i + k; j < n; i++, j++) {
-      let val = dp[i][j - 1];
-      let finalval = -1;
-      for (let t = i; t < j - 4; t++) {
-        if (
-          (str[t] === "A" && str[j] === "U") ||
-          (str[t] === "U" && str[j] === "A") ||
-          (str[t] === "G" && str[j] === "C") ||
-          (str[t] === "C" && str[j] === "G")
-        ) {
-          if ((t - 1 < 0 ? 0 : dp[i][t - 1]) + dp[t + 1][j - 1] + 1 > val) {
-            val = (t - 1 < 0 ? 0 : dp[i][t - 1]) + dp[t + 1][j - 1] + 1;
-            finalval = t;
-          }
-        }
-      }
-      mp.set(`${i},${j}`, finalval);
-      dp[i][j] = val;
-    }
-  }
-
-  return mp;
-}
-
-function makePairs(mp, i, j, dotStructure) {
-  if (i >= j - 4) {
-    return;
-  }
-  let t = mp.get(`${i},${j}`);
-  if (t !== -1) {
-    dotStructure[i] = "(";
-    dotStructure[j] = ")";
-    makePairs(mp, i, t - 1, dotStructure);
-    makePairs(mp, t + 1, j - 1, dotStructure);
-  } else {
-    dotStructure[j] = ".";
-    makePairs(mp, i, j - 1, dotStructure);
-  }
-}
-
-function generateDotStructure(str) {
-  let n = str.length;
-  let mp = solve(str, n);
-  let dotStructure = Array(n).fill(".");
-  makePairs(mp, 0, n - 1, dotStructure);
-  return dotStructure.join("");
-}
-
 function parseDotStructureFromURL(dotBracketEncoded) {
   const dotStructureParam = decodeURIComponent(dotBracketEncoded);
 
@@ -63,11 +10,19 @@ function parseDotStructureFromURL(dotBracketEncoded) {
 
 function updateStructure() {
   var url = new URL(window.location.href);
-  var sequence = url.searchParams.get("sequence").toUpperCase();
+  var sequence = url.searchParams.get("sequence")?.toUpperCase();
   var dotBracketEncoded = url.searchParams.get("dot_structure");
+
+  let shouldDisplay = sequence && dotBracketEncoded ? true : false;
+  // console.log(shouldDisplay);
+  if (!shouldDisplay) {
+    console.log("hide vis 1");
+    document.getElementById("vis2").style.display = "none";
+  }
+
   // var dotBracket = dot;
-  // console.log(dotBracket);
   const dotBracket = parseDotStructureFromURL(dotBracketEncoded);
+  console.log(dotBracket);
   // var dotBracket = "(((((((((...((((((.........))))))........((((((.......))))))..)))))))))";
 
   var svg = document.getElementById("rna_ss");

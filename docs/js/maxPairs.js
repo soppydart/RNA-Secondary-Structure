@@ -53,8 +53,12 @@ function findPairs(sequence) {
 
 // RNA sequence
 var url = new URL(window.location.href);
-const sequence = url.searchParams.get("sequence").toUpperCase();
-console.log(sequence);
+const sequence = url.searchParams.get("sequence")?.toUpperCase();
+let shouldDisplay = sequence ? true : false;
+if (!shouldDisplay) {
+  document.getElementById("vis1").style.display = "none";
+}
+console.log(shouldDisplay);
 // Pairs
 const pairs = findPairs(sequence);
 
