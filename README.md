@@ -20,7 +20,7 @@
 
 ### Prerequisites
 
-- [The ViennaRNA Package]([https://unity.com/download](https://www.tbi.univie.ac.at/RNA/index.html))
+- [The ViennaRNA Package](https://www.tbi.univie.ac.at/RNA/index.html)
 - [GNU Make](https://www.gnu.org/software/make/) 
 - [GCC](https://gcc.gnu.org/)
 
