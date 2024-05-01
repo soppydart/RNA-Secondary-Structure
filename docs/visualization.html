@@ -6,32 +6,54 @@
     <link rel="stylesheet" href="css/fornac.css" />
     <link rel="stylesheet" href="css/visualization.css" />
     <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="icon" type="image/x-icon" href="assets/logo.png">
   </head>
   <body>
     <nav id="navbar">
       <div class="containerNav">
-        <a href="#" class="logoNav">Home</a>
+        <a href="#">
+          <img src="assets/logo.png" class="nav-img" height="50px" width="50x"></img>
+        </a>
         <ul class="nav-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Visualization</a></li>
-          <li><a href="#">Docs</a></li>
-          <li><a href="#">Analysis</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="visualization.html">Visualization</a></li>
+          <li><a href="documentation.html">Docs</a></li>
+          <li><a href="analysis.html">Analysis</a></li>
+          <li><a href="comparison.html">Comparison</a></li>
+          <li><a href="extras.html">Extras</a></li>
         </ul>
       </div>
     </nav>
     <h1 class="heading">Visualization</h1>
-    <div class="container2">
+    <div class="container2" id="vis1">
       <h1>Maximizing number of pairs</h1>
       <div id="canvas1"></div>
     </div>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="js/maxPairs.js"></script>
-    <div class="container2">
+    <div class="container2" id="vis2">
       <h1>RNA Secondary Structure Visualization</h1>
       <div id="rna_ss"></div>
     </div>
     <script src="https://unpkg.com/d3@3.5"></script>
     <script src="js/fornac.js"></script>
     <script src="js/secondaryStructure.js"></script>
+    <script src="js/form.js"></script>
+
+    <div class="containerForm">
+    <h2>Enter Sequence and Dot Bracket</h2>
+    <form id="myForm" onsubmit="redirect()">
+      <div class="form-group">
+        <label for="sequence">Sequence:</label>
+        <input type="text" id="sequence" name="sequence">
+      </div>
+      <div class="form-group">
+        <label for="dot_structure">Dot Bracket:</label>
+        <input type="text" id="dot_structure" name="dot_structure">
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
   </body>
 </html>
